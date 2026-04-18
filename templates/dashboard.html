@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <h1>{{ user.login }}</h1>
+    <p>Private + Public repos: {{ repos|length }}</p>
+
+    <h2>Repositories:</h2>
+    <ul>
+      {% for repo in repos %}
+      <li>{{ repo.name }} (⭐ {{ repo.stargazers_count }})</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
