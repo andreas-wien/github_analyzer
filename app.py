@@ -7,6 +7,7 @@ load_dotenv()
 
 GITHUB_CLIENT_ID = os.getenv("GITHUB_CLIENT_ID")
 GITHUB_CLIENT_SECRET = os.getenv("GITHUB_CLIENT_SECRET")
+ENVIRONMENT = os.getenv("ENVIRONMENT")
 
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
@@ -71,4 +72,8 @@ def profile():
     return f"User: {data['login']}, Public repos: {data['public_repos']}"
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    if ENVIRONMENT == "DEV":
+        app.run(debug=True)
+    else:
+        port = int(os.environ.get("PORT", 5000))
+        app.run(host="0.0.0.0", port=port)

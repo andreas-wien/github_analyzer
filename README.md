@@ -25,3 +25,4 @@ See .env.example for all env variables used in this project.
 Flask
 requests
 python-dotenv
+gunicorn
