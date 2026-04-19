@@ -66,8 +66,13 @@ def profile():
     username = request.form["username"]
     
     url = f"https://api.github.com/users/{username}"
-    response = requests.get(url)
+    response = requests.get(url, headers={
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "Flask-App"
+    })
     data = response.json()
+    
+    print("GitHub response:", data)
 
     return f"User: {data['login']}, Public repos: {data['public_repos']}"
 
