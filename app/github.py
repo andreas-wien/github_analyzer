@@ -1,11 +1,15 @@
 import requests
 from flask import current_app
 
+API_BASE_URL = "https://api.github.com"
+
 BASE_HEADERS = {
     "Accept": "application/vnd.github+json",
     "User-Agent": "Flask-App"
 }
 
+def get_auth_url():
+    return f"https://github.com/login/oauth/authorize?client_id={current_app.config['GITHUB_CLIENT_ID']}&scope=repo"
 
 def get_access_token(code):
     url = "https://github.com/login/oauth/access_token"
@@ -25,7 +29,7 @@ def get_user(token):
         "Authorization": f"token {token}"
     }
 
-    res = requests.get("https://api.github.com/user", headers=headers)
+    res = requests.get(f"{API_BASE_URL}/user", headers=headers)
     return res.json()
 
 
@@ -35,11 +39,24 @@ def get_repos(token):
         "Authorization": f"token {token}"
     }
 
-    res = requests.get("https://api.github.com/user/repos", headers=headers)
+    res = requests.get(f"{API_BASE_URL}/user/repos", headers=headers)
     return res.json()
 
 
 def get_public_user(username):
-    url = f"https://api.github.com/users/{username}"
+    url = f"{API_BASE_URL}/users/{username}"
     res = requests.get(url, headers=BASE_HEADERS)
     return res.json()
+
+def get_top_languages(token):
+    repos = get_repos(token)
+    
+    languages = {}
+
+    for repo in repos:
+        lang = repo["language"]
+        if lang:
+            languages[lang] = languages.get(lang, 0) + 1
+    languages = dict(sorted(languages.items(), key=lambda x: x[1], reverse=True))
+    
+    return languages

@@ -12,12 +12,14 @@
   </head>
 
   <body class="bg-light">
+    {% if session.get("github_token") %}
     <nav class="navbar navbar-dark bg-dark mb-4">
       <div class="container">
         <a class="navbar-brand" href="/">GitHub Analyzer</a>
-        <a class="btn btn-outline-light btn-sm" href="/login">Login</a>
+        <a class="btn btn-outline-light btn-sm" href="/logoff">Logoff</a>
       </div>
     </nav>
+    {% endif %}
 
     <main class="container">
         {% block content %}
