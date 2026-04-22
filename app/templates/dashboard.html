@@ -1,17 +1,31 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Dashboard</title>
-  </head>
-  <body>
-    <h1>{{ user.login }}</h1>
-    <p>Private + Public repos: {{ repos|length }}</p>
+{% extends "_layout.html" %}
 
-    <h2>Repositories:</h2>
-    <ul>
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="mb-4">
+  <h1 class="h3">{{ user.login }}</h1>
+  <p class="text-muted">Public + Private repos: {{ repos|length }}</p>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h2 class="h5 mb-3">Repositories</h2>
+
+    <ul class="list-group list-group-flush">
       {% for repo in repos %}
-      <li>{{ repo.name }} (⭐ {{ repo.stargazers_count }})</li>
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <span>{{ repo.name }}</span>
+        <span class="badge bg-primary rounded-pill">
+          ⭐ {{ repo.stargazers_count }}
+        </span>
+      </li>
       {% endfor %}
     </ul>
-  </body>
-</html>
+  </div>
+</div>
+
+{% endblock %}
