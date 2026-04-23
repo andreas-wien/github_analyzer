@@ -1,5 +1,6 @@
 import requests
 from flask import current_app
+from .utility import get_all_pages
 
 API_BASE_URL = "https://api.github.com"
 
@@ -38,14 +39,10 @@ def get_repos(token):
         "Authorization": f"token {token}"
     }
 
-    res = requests.get(f"{API_BASE_URL}/user/repos", headers=headers)
-    return res.json()
-
-
-def get_public_user(username):
-    url = f"{API_BASE_URL}/users/{username}"
-    res = requests.get(url, headers=BASE_HEADERS)
-    return res.json()
+    return get_all_pages(
+        f"{API_BASE_URL}/user/repos",
+        headers
+    )
 
 def get_top_languages(token):
     repos = get_repos(token)
@@ -66,9 +63,11 @@ def get_followers(token, user):
         **BASE_HEADERS,
         "Authorization": f"token {token}"
     }
-    res = requests.get(user["followers_url"], headers=headers)
     
-    return res.json()
+    return get_all_pages(
+        user["followers_url"],
+        headers
+    )
 
 def get_social_acccounts(token):
     headers = {
