@@ -1,5 +1,4 @@
 import plotly.graph_objects as go
-from collections import Counter
 
 def pushes_per_day(events):
     push_counts = {}
