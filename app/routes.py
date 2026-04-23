@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, session
-from .github import get_auth_url, get_top_languages, get_user, get_repos, get_access_token, get_public_user
+from .github import *
 
 main = Blueprint("main", __name__)
 
@@ -58,13 +58,49 @@ def repos():
     return render_template("repos.html", user=user, repos=repos)
 
 
-@main.route("/profile", methods=["POST"])
+@main.route("/profile")
 def profile():
-    username = request.form.get("username")
+    token = session.get("github_token")
 
-    data = get_public_user(username)
+    if not token:
+        return redirect("/")
 
-    if "login" not in data:
-        return f"Error: {data.get('message')}"
+    user = get_user(token)
+    followers = get_followers(token, user)
+    social_accounts = get_social_acccounts(token)
+    print(social_accounts)
 
-    return f"User: {data['login']}, Public repos: {data['public_repos']}"
+    return render_template("profile.html", user=user, followers=followers, social_accounts=social_accounts)
+
+@main.route("/activity")
+def activity():
+    token = session.get("github_token")
+
+    if not token:
+        return redirect("/")
+
+    user = get_user(token)
+
+    return render_template("activity.html", user=user)
+
+@main.route("/stats")
+def stats():
+    token = session.get("github_token")
+
+    if not token:
+        return redirect("/")
+
+    user = get_user(token)
+
+    return render_template("stats.html", user=user)
+
+@main.route("/languages")
+def languages():
+    token = session.get("github_token")
+
+    if not token:
+        return redirect("/")
+
+    user = get_user(token)
+
+    return render_template("languages.html", user=user)

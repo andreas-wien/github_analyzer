@@ -22,7 +22,6 @@ def get_access_token(code):
 
     return response.json().get("access_token")
 
-
 def get_user(token):
     headers = {
         **BASE_HEADERS,
@@ -57,6 +56,26 @@ def get_top_languages(token):
         lang = repo["language"]
         if lang:
             languages[lang] = languages.get(lang, 0) + 1
+
     languages = dict(sorted(languages.items(), key=lambda x: x[1], reverse=True))
     
     return languages
+
+def get_followers(token, user):
+    headers = {
+        **BASE_HEADERS,
+        "Authorization": f"token {token}"
+    }
+    res = requests.get(user["followers_url"], headers=headers)
+    
+    return res.json()
+
+def get_social_acccounts(token):
+    headers = {
+        **BASE_HEADERS,
+        "Authorization": f"token {token}"
+    }
+
+    res = requests.get(f"{API_BASE_URL}/user/social_accounts", headers=headers)
+    
+    return res.json()

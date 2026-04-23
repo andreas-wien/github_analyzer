@@ -1,13 +1,14 @@
-{% extends "_layout.html" %} {% block title %}Dashboard{% endblock %} {% block
-content %}
+{% extends "_layout.html" %}
 
-<!-- Header -->
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
 <div class="mb-4">
   <h1 class="h3">{{ user.login }}</h1>
   <p class="text-muted">Welcome back 👋</p>
 </div>
 
-<!-- Stats overview -->
 <div class="row g-3 mb-4">
   <div class="col-md-4">
     <div class="card shadow-sm text-center">
@@ -37,7 +38,6 @@ content %}
   </div>
 </div>
 
-<!-- Quick insights -->
 <div class="row g-3 mb-4">
   <div class="col-md-6">
     <div class="card shadow-sm">
@@ -45,10 +45,10 @@ content %}
         <h2 class="h6 mb-3">Top Languages</h2>
         <ul class="list-group list-group-flush">
           {% for lang, count in languages.items() %}
-          <li class="list-group-item d-flex justify-content-between">
-            <span>{{ lang }}</span>
-            <span>{{ count }}</span>
-          </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>{{ lang }}</span>
+              <span>{{ count }}</span>
+            </li>
           {% endfor %}
         </ul>
       </div>
@@ -58,12 +58,26 @@ content %}
   <div class="col-md-6">
     <div class="card shadow-sm">
       <div class="card-body">
-        <h2 class="h6 mb-3">Quick Links</h2>
+        <h2 class="h6 mb-3">Explore</h2>
         <div class="d-grid gap-2">
-          <a href="/repos" class="btn btn-outline-primary">View Repositories</a>
-          <a href="/profile" class="btn btn-outline-secondary"
-            >Profile Details</a
-          >
+          <a href="/repos" class="btn btn-outline-primary">
+            📁 Repositories
+          </a>
+          <a href="/profile" class="btn btn-outline-secondary">
+            👤 Profile
+          </a>
+          <a href="/activity" class="btn btn-outline-success">
+            📅 Activity
+          </a>
+          <a href="/stats" class="btn btn-outline-info">
+            📊 Statistics
+          </a>
+          <a href="/languages" class="btn btn-outline-dark">
+            🌐 Languages
+          </a>
+          <a href="/" class="btn btn-outline-danger">
+            🧠 Developer insights [COMING SOON]
+          </a>
         </div>
       </div>
     </div>
