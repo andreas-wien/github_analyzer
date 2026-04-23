@@ -13,8 +13,8 @@
   <div class="card-body">
     <h2 class="h5 mb-3">Profile</h2>
     <div class="row g-3 mb-4">
-      <div class="col-md-6">
-        <img src="{{ user.avatar_url }}" alt="Avatar" class="img-thumbnail">
+      <div class="col-md-6 justify-content-center">
+        <img src="{{ user.avatar_url }}" alt="Avatar" class="user-avatar img-thumbnail rounded-circle mx-4">
       </div>
       <div class="col-md-6">
         <p><strong>Name:</strong> {{ user.name }}</p>
@@ -29,12 +29,6 @@
         {% endif %}
         {% if user.email %}
           <p><strong>Email:</strong> {{ user.email }}</p>
-        {% endif %}
-        {% if user.blog %}
-          <p><strong>Blog:</strong> {{ user.blog }}</p>
-        {% endif %}
-        {% if user.public_repos %}
-          <p><strong>Public repos:</strong> {{ user.public_repos }}</p>
         {% endif %}
         {% if user.created_at %}
           <p><strong>Created at:</strong> {{ user.created_at }}</p>
@@ -59,13 +53,15 @@
     <div class="col-md-6">
       <h2 class="h5 mb-3">Followers</h2>
         <ul class="list-group list-group-flush">
+          {% if not followers %}
+            <li class="list-group-item">No followers</li>
+          {% endif %}
           {% for f in followers %}
             <li class="list-group-item d-flex align-items-center gap-2 py-2">
-              <img 
+              <img
                 src="{{ f.avatar_url }}" 
                 alt="Avatar" 
-                class="rounded-circle"
-                style="width: 64px; height: 64px;"
+                class="follower-avatar rounded-circle"
               >
               <a 
                 href="{{ f.html_url }}" 

@@ -1,0 +1,13 @@
+.container-logon-wall {
+    min-height: 70vh;
+}
+
+.user-avatar {
+    width: 256px;
+    height: 256px;
+}
+
+.follower-avatar {
+    width: 64px;
+    height: 64px;
+}
