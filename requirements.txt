@@ -9,7 +9,9 @@ idna==3.11
 itsdangerous==2.2.0
 Jinja2==3.1.6
 MarkupSafe==3.0.3
+narwhals==2.20.0
 packaging==26.1
+plotly==6.7.0
 python-dotenv==1.2.2
 requests==2.33.1
 urllib3==2.6.3

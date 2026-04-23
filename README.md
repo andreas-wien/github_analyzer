@@ -50,6 +50,7 @@ See .env.example for all env variables used in this project.
 - python-dotenv
 - gunicorn
 - Bootstrap
+- plotly
 
 
 ## 🔐 Security Notes

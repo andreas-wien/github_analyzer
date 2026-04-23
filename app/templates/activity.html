@@ -7,6 +7,8 @@
 <div class="mb-4">
   <h1 class="h3">{{ user.login }}</h1>
   <p class="text-muted">Your GitHub activity</p>
+  <div>{{ fig_pushes_per_day | safe }}</div>
+  <div>{{ fig_events_breakdown | safe }}</div>
 </div>
 
 {% endblock %}
