@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, session
 
 from ..github.activity import *
+from ..github.charts import *
 from ..github.user import *
 
 activity_bp = Blueprint("activity", __name__)
