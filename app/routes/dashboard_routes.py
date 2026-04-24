@@ -13,6 +13,6 @@ def dashboard():
 
     user = get_user(token)
     repos = get_repos(token)
-    languages = get_top_languages(token)
+    languages = get_top_languages(token, 5)
 
     return render_template("dashboard.html", user=user, repos=repos, languages=languages)

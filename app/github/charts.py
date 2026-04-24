@@ -13,7 +13,6 @@ def pushes_per_day(events):
         go.Bar(x=list(push_counts.keys()), y=list(push_counts.values()))
     ])
     fig.update_layout(title="Pushes per Day", xaxis_title="Date", yaxis_title="Pushes")
-   
     return fig.to_html(full_html=False)
 
 

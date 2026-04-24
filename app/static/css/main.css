@@ -1,13 +1,60 @@
 .container-logon-wall {
-    min-height: 70vh;
+  min-height: 70vh;
 }
 
 .user-avatar {
-    width: 256px;
-    height: 256px;
+  width: 256px;
+  height: 256px;
 }
 
 .follower-avatar {
-    width: 64px;
-    height: 64px;
+  width: 64px;
+  height: 64px;
+}
+
+.timeline {
+  position: relative;
+  margin-left: 20px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #dee2e6;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 20px;
+  padding-left: 30px;
+}
+
+.timeline-content {
+  background: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 16px;
+  height: 16px;
+  background: #0d6efd;
+  border-radius: 50%;
+}
+.timeline-dot.PushEvent {
+  background: #d80000;
+}
+.timeline-dot.WatchEvent {
+  background: #ffc107;
+}
+.timeline-dot.PullRequestEvent {
+  background: #198754;
 }

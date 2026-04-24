@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 
 def get_all_pages(url, headers):
     results = []
@@ -22,3 +23,7 @@ def get_all_pages(url, headers):
         url = next_url
 
     return results
+
+def format_date_string(date):
+    dt = datetime.fromisoformat(date.replace("Z", ""))
+    return dt.strftime("%b %d, %H:%M")

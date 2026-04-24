@@ -12,16 +12,17 @@ def get_repos(token):
         headers
     )
 
-def get_top_languages(token):
+def get_top_languages(token, n):
     repos = get_repos(token)
     
     languages = {}
-
+    
     for repo in repos:
         lang = repo["language"]
         if lang:
             languages[lang] = languages.get(lang, 0) + 1
 
     languages = dict(sorted(languages.items(), key=lambda x: x[1], reverse=True))
+    languages = dict(list(languages.items())[:n])
     
     return languages
