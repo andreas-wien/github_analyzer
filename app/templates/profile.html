@@ -31,7 +31,7 @@
           <p><strong>Email:</strong> {{ user.email }}</p>
         {% endif %}
         {% if user.created_at %}
-          <p><strong>Created at:</strong> {{ user.created_at }}</p>
+          <p><strong>Created at:</strong> {{ user_created_at }}</p>
         {% endif %}
         <p><strong>Socials</strong></p>
         <a href="{{ user.html_url }}" target="_blank" rel="noopener" class="btn btn-outline-primary">

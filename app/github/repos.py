@@ -12,7 +12,7 @@ def get_repos(token):
         headers
     )
 
-def get_top_languages(token, n):
+def get_repo_languages(token, n):
     repos = get_repos(token)
     
     languages = {}
